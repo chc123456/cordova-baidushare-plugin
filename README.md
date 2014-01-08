@@ -20,7 +20,11 @@ Pass a message object with a "text" property as an argument to the send function
 
 ```
 var message = {
-    text: "This is a test message"
+ title: "title",
+ description: "这是一个测试",
+ url: "http://www.baidu.com",
+ imageUrl: "http://images-fast.digu365.com/407685504fe441c6a36f04f518cc997a0004.jpg",
+ imageNamed: "小清新",
 };
 window.socialmessage.send(message);
 ```

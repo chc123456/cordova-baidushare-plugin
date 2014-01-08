@@ -9,7 +9,6 @@ SocialMessage.prototype.send = function (message) {
     if (!message) {
         return;
     } 
-    message.activityTypes = message.activityTypes.join(",");
     exec(null, null, "SocialMessage", "send", [message]);
 };
 
