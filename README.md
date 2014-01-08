@@ -5,7 +5,7 @@ Cordova Plugin to utilise native share features. Developed for Apache Cordova CL
 ## 1 step install
 
 ```
-cordova plugin add https://github.com/leecrossley/cordova-plugin-social-message.git
+cordova plugin add https://github.com/chc123456/cordova-baidushare-plugin.git
 ```
 
 ## Usage
