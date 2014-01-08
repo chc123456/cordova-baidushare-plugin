@@ -21,9 +21,9 @@ window.socialmessage.send(message);
 ```
 安装完成后记得重新Build一下。
 关于插件需要的支持库，请参见百度社会化分享文档
-```
+
 http://developer.baidu.com/wiki/index.php?title=docs/social
-```
+
 在AppDelegate中初始化分享插件信息。
 ```
 - (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
