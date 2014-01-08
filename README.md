@@ -1,6 +1,6 @@
 ## Baidu Share Plugin for Apache Cordova
 
-Cordova Plugin to utilise native share features. Developed for Apache Cordova CLI >= 3.0.0. Share text, images and urls to Facebook, Twitter and more.
+Cordova Plugin to baidu share . Developed for Apache Cordova CLI >= 3.0.0. Share text, images and urls to weibo, weichat and more.
 
 ## 1 step install
 
