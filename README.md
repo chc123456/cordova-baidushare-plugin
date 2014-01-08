@@ -21,10 +21,10 @@ Pass a message object with a "text" property as an argument to the send function
 ```
 var message = {
  title: "title",
- description: "ÕâÊÇÒ»¸ö²âÊÔ",
+ description: "è¿™æ˜¯ä¸€ä¸ªæµ‹è¯•",
  url: "http://www.baidu.com",
  imageUrl: "http://images-fast.digu365.com/407685504fe441c6a36f04f518cc997a0004.jpg",
- imageNamed: "Ğ¡ÇåĞÂ",
+ imageNamed: "å°æ¸…æ–°",
 };
 window.socialmessage.send(message);
 ```
