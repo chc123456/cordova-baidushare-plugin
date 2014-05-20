@@ -6,8 +6,7 @@
 //
 //
 
-#import "BaiduSharePlugin.h"
-#import <BaiduSocialShare/BDSocialShareSDK.h>
+#import "BaiduSharePlugin.h" 
 
 @implementation BaiduSharePlugin
 - (void) send:(CDVInvokedUrlCommand*)command;
@@ -18,23 +17,36 @@
     NSString *url = [args objectForKey:@"url"];
     NSString *imageUrl = [args objectForKey:@"imageUrl"];
     NSString *imageNamed = [args objectForKey:@"imageNamed"];
-    SHARE_MENU_STYLE style = BD_SOCIAL_SHARE_MENU_BLACK_STYLE;
-    BDSocialEventHandler result = ^(BD_SOCIAL_RESULT requestResult, NSString *shareType, id response, NSError *error)
-    {
-        if (requestResult == BD_SOCIAL_SUCCESS) {
-           
-        } else if (requestResult == BD_SOCIAL_CANCEL){
-        } else if (requestResult == BD_SOCIAL_FAIL){
-        }
+    FrontiaShare *share = [Frontia getShare];
+    
+    [share registerQQAppId:@"100358052" enableSSO:NO];
+    [share registerWeixinAppId:@"wx712df8473f2a1dbe"];
+    
+    //鎺堟潈鍙栨秷鍥炶皟鍑芥暟
+    FrontiaShareCancelCallback onCancel = ^(){
+        NSLog(@"OnCancel: share is cancelled");
     };
     
-    //构建分享内容对象
-    BDSocialShareContent *content = [BDSocialShareContent
-                                     shareContentWithDescription:description url:url                                     title:title];
-    //图片分享参数设定
-    [content addImageWithImageSource:[UIImage imageNamed:imageNamed] imageUrl:imageUrl];
-    //打开分享对话框
-    [BDSocialShareSDK showShareMenuWithShareContent:content menuStyle:style supportedInterfaceOrientations:UIInterfaceOrientationMaskAllButUpsideDown result:result];
+    //鎺堟潈澶辫触鍥炶皟鍑芥暟
+    FrontiaShareFailureCallback onFailure = ^(int errorCode, NSString *errorMessage){
+        NSLog(@"OnFailure: %d  %@", errorCode, errorMessage);
+    };
+    
+    //鎺堟潈鎴愬姛鍥炶皟鍑芥暟
+    FrontiaMultiShareResultCallback onResult = ^(NSDictionary *respones){
+        NSLog(@"OnResult: %@", [respones description]);
+    };
+    
+    FrontiaShareContent *content=[[FrontiaShareContent alloc] init];
+    content.url = url;
+    content.title = title;
+    content.description = description;
+    content.imageObj = imageUrl;
+    
+    NSArray *platforms = @[FRONTIA_SOCIAL_SHARE_PLATFORM_SINAWEIBO,FRONTIA_SOCIAL_SHARE_PLATFORM_QQWEIBO,FRONTIA_SOCIAL_SHARE_PLATFORM_QQ,FRONTIA_SOCIAL_SHARE_PLATFORM_RENREN,FRONTIA_SOCIAL_SHARE_PLATFORM_KAIXIN,FRONTIA_SOCIAL_SHARE_PLATFORM_EMAIL,FRONTIA_SOCIAL_SHARE_PLATFORM_SMS];
+    
+    [share showShareMenuWithShareContent:content displayPlatforms:platforms supportedInterfaceOrientations:UIInterfaceOrientationMaskPortrait isStatusBarHidden:NO targetViewForPad:sender cancelListener:onCancel failureListener:onFailure resultListener:onResult];
+
 }
 
 
